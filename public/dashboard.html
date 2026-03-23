@@ -178,14 +178,14 @@ body.ready{ opacity:1; }
 
     (async () => {
         const { data: { session } } = await _supabase.auth.getSession();
-        if (!session) { window.location.href = '/index.html'; return; }
+        if (!session) { window.location.href = '/'; return; }
         document.getElementById('userEmail').textContent = session.user.email;
         document.body.classList.add('ready');
     })();
 
     document.getElementById('logoutBtn').addEventListener('click', async () => {
         await _supabase.auth.signOut();
-        window.location.href = '/index.html';
+        window.location.href = '/';
     });
 </script>
 </body>
