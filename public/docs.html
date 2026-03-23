@@ -186,7 +186,7 @@ body::-webkit-scrollbar-thumb{ background:#1e1e1e; border-radius:4px; }
         <span class="nav-version">v1.0</span>
     </div>
     <div class="nav-right">
-        <a id="navBtn" class="nav-back" href="/index.html">
+        <a id="navBtn" class="nav-back" href="/">
             <i id="navBtnIcon" class="fa-solid fa-arrow-right-to-bracket"></i>
             <span id="navBtnLabel">Login</span>
         </a>
@@ -602,11 +602,11 @@ body::-webkit-scrollbar-thumb{ background:#1e1e1e; border-radius:4px; }
         const navLabel = document.getElementById('navBtnLabel');
 
         if (session) {
-            navBtn.href          = '/dashboard.html';
+            navBtn.href          = '/dash';
             navIcon.className    = 'fa-solid fa-arrow-left';
             navLabel.textContent = 'Dashboard';
         } else {
-            navBtn.href          = '/index.html';
+            navBtn.href          = '/';
             navIcon.className    = 'fa-solid fa-arrow-right-to-bracket';
             navLabel.textContent = 'Login';
         }
