@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yavela | Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+    --bg:#090909;
+    --accent:#c4c9cd;
+    --card:#141414;
+    --hover:#1f1f1f;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+body{
+    background:var(--bg);
+    color:var(--accent);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transition:opacity .2s ease;
+}
+body.ready{ opacity:1; }
+.navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 40px;
+    border-bottom:1px solid #1f1f1f;
+}
+.navbar .logo{
+    width:50px;
+    filter: brightness(0) saturate(100%) invert(82%) sepia(6%) saturate(118%) hue-rotate(169deg);
+}
+.navbar h1{ font-size:20px; font-weight:700; }
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+.user-email{ font-size:12px; color:#555; }
+.logout-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:transparent;
+    border:none;
+    color:#888;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    padding:8px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:all .25s ease;
+}
+.logout-btn:hover{ color:var(--accent); background:#141414; }
+.logout-btn i{ font-size:13px; }
+.main{
+    display:flex;
+    gap:20px;
+    padding:30px 40px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.card{
+    background:var(--card);
+    border-radius:12px;
+    width:550px;
+    height:150px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:all .3s cubic-bezier(.22,1,.36,1);
+    cursor:pointer;
+}
+.card:hover{ background:var(--hover); transform:translateY(-2px); }
+.card-header{ display:flex; align-items:center; gap:10px; }
+.card-icon{ font-size:16px; color:#555; }
+.card h2{ font-size:18px; font-weight:700; }
+.card p{ font-size:13px; color:#999; line-height:1.4; }
+.card a{
+    margin-top:auto;
+    text-decoration:none;
+    color:var(--accent);
+    font-weight:600;
+    font-size:14px;
+    transition:opacity .25s ease;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    width:fit-content;
+}
+.card a:hover{ opacity:0.7; }
+.card a i{ font-size:12px; }
+.footer{
+    text-align:center;
+    font-size:12px;
+    padding:20px 0;
+    color:#555;
+    margin-top:auto;
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+        <img src="https://files.yavela.xyz/data/logo.png" class="logo">
+        <h1>Yavela Dashboard</h1>
+    </div>
+    <div class="nav-right">
+        <span class="user-email" id="userEmail"></span>
+        <button class="logout-btn" id="logoutBtn">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Logout
+        </button>
+    </div>
+</div>
+<div class="main">
+    <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-code card-icon"></i>
+            <h2>Executor</h2>
+        </div>
+        <p>Download the latest executor for running your workflows locally.</p>
+        <a href="https://files.yavela.xyz/data/Yavela.zip">
+            <i class="fa-solid fa-download"></i> Download
+        </a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-book card-icon"></i>
+            <h2>API Docs</h2>
+        </div>
+        <p>Explore the API documentation and see how to integrate Yavela features programmatically.</p>
+        <a href="/docs.html">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Docs
+        </a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-cube card-icon"></i>
+            <h2>Yavela API (NOT BASED)</h2>
+        </div>
+        <p>Download the Exploit API to make your own Roblox Exeuctor.</p>
+        <a href="https://files.yavela.xyz/data/api/yavAPI.7z">
+            <i class="fa-solid fa-download"></i> Download API
+        </a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-cube card-icon"></i>
+            <h2>Yavela API (Velocity Based)</h2>
+        </div>
+        <p>Download the Exploit API to make your own Roblox Exeuctor, using Velocity's API as it's base.</p>
+        <a href="https://files.yavela.xyz/data/api/velocity/yavAPI.dll">
+            <i class="fa-solid fa-download"></i> Download API
+        </a>
+    </div>
+</div>
+<div class="footer">
+    © 2026 Yavela • All rights reserved
+</div>
+
+<script>
+    const { createClient } = supabase;
+    const _supabase = createClient('__SUPABASE_URL__', '__SUPABASE_ANON_KEY__');
+
+    (async () => {
+        const { data: { session } } = await _supabase.auth.getSession();
+        if (!session) { window.location.href = '/index.html'; return; }
+        document.getElementById('userEmail').textContent = session.user.email;
+        document.body.classList.add('ready');
+    })();
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+        await _supabase.auth.signOut();
+        window.location.href = '/index.html';
+    });
+</script>
+</body>
+</html>
