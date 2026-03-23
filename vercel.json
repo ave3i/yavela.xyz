@@ -7,9 +7,6 @@
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/api/page.js?page=$1"
-    }
+    { "src": "/.*", "dest": "/api/page.js" }
   ]
 }
