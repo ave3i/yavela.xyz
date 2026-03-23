@@ -7,6 +7,7 @@
     }
   ],
   "routes": [
+    { "src": "/", "dest": "/login", "status": 308 },
     { "src": "/.*", "dest": "/api/page.js" }
   ]
 }
