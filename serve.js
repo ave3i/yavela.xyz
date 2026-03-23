@@ -1,29 +1,32 @@
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 
-const PAGES = ['index.html', 'register.html', 'dashboard.html', 'docs.html'];
+const ROUTES = {
+  '/': 'index.html',
+  '/login': 'index.html',
+  '/register': 'register.html',
+  '/dash': 'dashboard.html',
+  '/docs': 'docs.html'
+};
 
 module.exports = (req, res) => {
-    let page = req.query.page || 'index.html';
+  let route = req.url.split('?')[0];
+  const page = ROUTES[route];
 
-    page = page.replace(/^\//, '') || 'index.html';
+  if (!page) {
+    return res.status(404).send('Page not found.');
+  }
 
-    if (!PAGES.includes(page)) {
-        return res.status(404).send('Not found.');
-    }
+  const filePath = path.join(process.cwd(), 'public', page);
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).send('Page file missing.');
+  }
 
-    const filePath = path.join(process.cwd(), 'public', page);
+  let html = fs.readFileSync(filePath, 'utf8');
+  html = html
+    .replace(/__SUPABASE_URL__/g, process.env.SUPABASE_URL || '')
+    .replace(/__SUPABASE_ANON_KEY__/g, process.env.SUPABASE_ANON_KEY || '');
 
-    if (!fs.existsSync(filePath)) {
-        return res.status(404).send('Page not found.');
-    }
-
-    let html = fs.readFileSync(filePath, 'utf8');
-
-    html = html
-        .replace(/__SUPABASE_URL__/g,      process.env.SUPABASE_URL)
-        .replace(/__SUPABASE_ANON_KEY__/g, process.env.SUPABASE_ANON_KEY);
-
-    res.setHeader('Content-Type', 'text/html');
-    res.send(html);
+  res.setHeader('Content-Type', 'text/html');
+  res.send(html);
 };
