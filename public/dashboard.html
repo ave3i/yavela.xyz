@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yavela | Dashboard</title>
+<link rel="icon" type="image/png" href="https://files.yavela.xyz/data/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="icon" type="image/png" href="https://files.yavela.xyz/data/logo.png">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
@@ -15,7 +15,6 @@
     --card:#141414;
     --hover:#1f1f1f;
     --border:#1f1f1f;
-    --muted:#555;
     --red:#f75d5d;
     --green:#3ecf8e;
 }
@@ -32,6 +31,7 @@ body{
 }
 body.ready{ opacity:1; }
 
+/* ── NAVBAR ── */
 .navbar{
     display:flex;
     align-items:center;
@@ -71,6 +71,7 @@ body.ready{ opacity:1; }
 .nav-tab.active{ color:var(--accent); background:#1a1a1a; }
 .nav-tab i{ font-size:11px; }
 
+/* ── PROFILE DROPDOWN ── */
 .profile-wrap{ position:relative; }
 .profile-btn{
     display:flex;
@@ -91,18 +92,24 @@ body.ready{ opacity:1; }
     width:34px;
     height:34px;
     border-radius:8px;
-    object-fit:cover;
     flex-shrink:0;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:13px;
     font-weight:700;
-    letter-spacing:.01em;
 }
-
 .profile-info{ text-align:left; }
-.profile-name{ font-size:13px; font-weight:600; color:var(--accent); line-height:1.2; max-width:130px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.profile-name{
+    font-size:13px;
+    font-weight:600;
+    color:var(--accent);
+    line-height:1.2;
+    max-width:130px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
 .profile-role{ font-size:10px; color:#444; }
 .profile-chevron{ font-size:10px; color:#333; transition:transform .2s; margin-left:2px; }
 .profile-btn.open .profile-chevron{ transform:rotate(180deg); }
@@ -166,9 +173,11 @@ body.ready{ opacity:1; }
 .dropdown-item.danger:hover{ color:var(--red); background:rgba(247,93,93,.05); }
 .dropdown-divider{ height:1px; background:#1a1a1a; margin:6px 0; }
 
+/* ── VIEWS ── */
 .view{ display:none; flex:1; flex-direction:column; }
 .view.active{ display:flex; }
 
+/* ── HOME ── */
 .main{
     display:flex;
     gap:20px;
@@ -187,9 +196,8 @@ body.ready{ opacity:1; }
     gap:14px;
     transition:all .3s cubic-bezier(.22,1,.36,1);
     cursor:pointer;
-    border:1px solid transparent;
 }
-.card:hover{ background:var(--hover); transform:translateY(-2px); border-color:#222; }
+.card:hover{ background:var(--hover); transform:translateY(-2px); }
 .card-header{ display:flex; align-items:center; gap:10px; }
 .card-icon{ font-size:16px; color:#555; }
 .card h2{ font-size:18px; font-weight:700; }
@@ -209,83 +217,42 @@ body.ready{ opacity:1; }
 .card a:hover{ opacity:.7; }
 .card a i{ font-size:12px; }
 
+/* ── SETTINGS ── */
 .settings-wrap{
-    max-width:560px;
-    width:100%;
-    margin:40px auto;
-    padding:0 20px 40px;
-}
-.settings-title{ font-size:26px; font-weight:900; margin-bottom:4px; letter-spacing:-.02em; }
-.settings-sub{ font-size:13px; color:#444; margin-bottom:32px; }
-
-.settings-block{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    overflow:hidden;
-    margin-bottom:14px;
-}
-.block-label{
-    padding:14px 20px;
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:#333;
-    border-bottom:1px solid var(--border);
-}
-
-.avatar-row{
     display:flex;
-    align-items:center;
-    gap:18px;
-    padding:20px;
-}
-.avatar-lg{
-    width:70px;
-    height:70px;
-    border-radius:14px;
-    flex-shrink:0;
-    display:flex;
-    align-items:center;
+    gap:20px;
+    padding:30px 40px;
+    flex-wrap:wrap;
     justify-content:center;
-    font-size:22px;
-    font-weight:700;
-    border:1px solid rgba(255,255,255,.06);
-    object-fit:cover;
 }
-.avatar-upload-col{ display:flex; flex-direction:column; gap:8px; }
-.upload-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    padding:8px 14px;
-    background:#1a1a1a;
-    border:1px solid #272727;
-    border-radius:8px;
-    color:#999;
-    font-size:12px;
-    font-weight:600;
-    cursor:pointer;
-    transition:all .2s;
-    font-family:'Poppins',sans-serif;
-    width:fit-content;
-}
-.upload-btn:hover{ border-color:#444; color:var(--accent); }
-#avatarInput{ display:none; }
-.upload-hint{ font-size:11px; color:#333; }
 
+/* settings cards match home cards exactly */
+.s-card{
+    background:var(--card);
+    border-radius:12px;
+    width:550px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.s-card-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.s-card-icon{ font-size:16px; color:#555; }
+.s-card h2{ font-size:18px; font-weight:700; }
+.s-card p{ font-size:13px; color:#999; line-height:1.4; }
+
+/* fields inside card */
 .field-row{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    padding:15px 20px;
-    border-bottom:1px solid var(--border);
+    flex-direction:column;
+    gap:6px;
 }
-.field-row:last-child{ border-bottom:none; }
-.field-meta .field-label{ font-size:13px; font-weight:600; }
-.field-meta .field-hint{ font-size:11px; color:#333; margin-top:2px; }
+.field-label{ font-size:12px; font-weight:600; color:#555; }
 .field-input{
     background:#0d0d0d;
     border:1px solid #1e1e1e;
@@ -293,59 +260,58 @@ body.ready{ opacity:1; }
     color:var(--accent);
     font-family:'Poppins',sans-serif;
     font-size:13px;
-    padding:8px 12px;
+    padding:10px 13px;
     outline:none;
-    width:210px;
+    width:100%;
     transition:border-color .2s;
-    flex-shrink:0;
 }
-.field-input:focus{ border-color:#333; }
+.field-input:focus{ border-color:#2e2e2e; }
 .field-input::placeholder{ color:#2a2a2a; }
-.field-input:disabled{ color:#2e2e2e; cursor:default; }
+.field-input:disabled{ color:#2e2e2e; cursor:default; background:#0a0a0a; }
 
 .save-btn{
     width:100%;
-    height:44px;
+    height:42px;
     border:none;
     border-radius:10px;
     background:var(--accent);
     color:#090909;
     font-weight:800;
-    font-size:14px;
+    font-size:13px;
     cursor:pointer;
     transition:all .3s cubic-bezier(.22,1,.36,1);
     font-family:'Poppins',sans-serif;
-    margin-top:14px;
+    margin-top:2px;
 }
 .save-btn:hover{ background:#d0d5d9; transform:translateY(-1px); }
 .save-btn:active{ transform:scale(.97); }
 .save-btn:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
 
-.save-msg{ text-align:center; font-size:12px; margin-top:10px; min-height:16px; }
+.save-msg{ font-size:12px; min-height:14px; margin-top:-4px; }
 .save-msg.ok{ color:var(--green); }
 .save-msg.err{ color:var(--red); }
 
-.danger-row{
-    padding:16px 20px;
-}
-.danger-btn{
+/* danger card */
+.danger-link{
     display:flex;
     align-items:center;
     gap:8px;
-    padding:10px 16px;
-    background:rgba(247,93,93,.04);
-    border:1px solid rgba(247,93,93,.12);
-    border-radius:8px;
-    color:rgba(247,93,93,.5);
-    font-size:13px;
+    margin-top:auto;
+    color:#f75d5d55;
     font-weight:600;
+    font-size:14px;
+    transition:color .25s;
     cursor:pointer;
-    transition:all .2s;
+    border:none;
+    background:transparent;
     font-family:'Poppins',sans-serif;
-    width:100%;
+    padding:0;
+    width:fit-content;
 }
-.danger-btn:hover{ background:rgba(247,93,93,.08); color:var(--red); border-color:rgba(247,93,93,.25); }
+.danger-link:hover{ color:var(--red); }
+.danger-link i{ font-size:12px; }
 
+/* ── FOOTER ── */
 .footer{ text-align:center; font-size:12px; padding:20px 0; color:#2a2a2a; margin-top:auto; }
 
 .overlay{ position:fixed; inset:0; z-index:100; display:none; }
@@ -356,6 +322,7 @@ body.ready{ opacity:1; }
 
 <div class="overlay" id="overlay"></div>
 
+<!-- NAVBAR -->
 <div class="navbar">
     <div class="nav-left">
         <img src="https://files.yavela.xyz/data/logo.png" class="logo">
@@ -403,6 +370,7 @@ body.ready{ opacity:1; }
     </div>
 </div>
 
+<!-- HOME VIEW -->
 <div class="view active" id="view-home">
     <div class="main">
         <div class="card">
@@ -449,54 +417,44 @@ body.ready{ opacity:1; }
     <div class="footer">© 2026 Yavela • All rights reserved</div>
 </div>
 
+<!-- SETTINGS VIEW -->
 <div class="view" id="view-settings">
     <div class="settings-wrap">
-        <div class="settings-title">Settings</div>
-        <div class="settings-sub">Manage your profile and account preferences.</div>
 
-        <div class="settings-block">
-            <div class="block-label">Profile Picture</div>
-            <div class="avatar-row">
-                <div class="avatar-lg" id="settingsAvatar"></div>
-                <div class="avatar-upload-col">
-                    <label class="upload-btn" for="avatarInput">
-                        <i class="fa-solid fa-arrow-up-from-bracket"></i> Upload Photo
-                    </label>
-                    <input type="file" id="avatarInput" accept="image/png,image/jpeg,image/gif,image/webp">
-                    <span class="upload-hint">PNG, JPG, GIF or WEBP · max 2 MB</span>
-                </div>
+        <!-- Profile card -->
+        <div class="s-card">
+            <div class="s-card-header">
+                <i class="fa-solid fa-user s-card-icon"></i>
+                <h2>Profile</h2>
             </div>
-        </div>
+            <p>Update your display name shown across the dashboard.</p>
 
-        <div class="settings-block">
-            <div class="block-label">Profile</div>
             <div class="field-row">
-                <div class="field-meta">
-                    <div class="field-label">Username</div>
-                    <div class="field-hint">Shown in the navbar and dropdown</div>
-                </div>
+                <span class="field-label">Username</span>
                 <input type="text" class="field-input" id="usernameInput" placeholder="your username" maxlength="32" autocomplete="off">
             </div>
+
             <div class="field-row">
-                <div class="field-meta">
-                    <div class="field-label">Email</div>
-                    <div class="field-hint">Your Supabase account email</div>
-                </div>
+                <span class="field-label">Email</span>
                 <input type="text" class="field-input" id="emailDisplay" disabled>
             </div>
+
+            <button class="save-btn" id="saveBtn" onclick="saveProfile()">Save Changes</button>
+            <div class="save-msg" id="saveMsg"></div>
         </div>
 
-        <button class="save-btn" id="saveBtn" onclick="saveProfile()">Save Changes</button>
-        <div class="save-msg" id="saveMsg"></div>
-
-        <div class="settings-block" style="margin-top:28px;">
-            <div class="block-label" style="color:rgba(247,93,93,.3);">Danger Zone</div>
-            <div class="danger-row">
-                <button class="danger-btn" onclick="logout()">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out of this account
-                </button>
+        <!-- Account / danger card -->
+        <div class="s-card" style="height:150px;">
+            <div class="s-card-header">
+                <i class="fa-solid fa-shield s-card-icon"></i>
+                <h2>Account</h2>
             </div>
+            <p>Manage your session and account access.</p>
+            <button class="danger-link" onclick="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out of this account
+            </button>
         </div>
+
     </div>
     <div class="footer">© 2026 Yavela • All rights reserved</div>
 </div>
@@ -505,9 +463,9 @@ body.ready{ opacity:1; }
 const { createClient } = supabase;
 const _supabase = createClient('__SUPABASE_URL__', '__SUPABASE_ANON_KEY__');
 
-let currentUser  = null;
-let pendingAvatar = null;
+let currentUser = null;
 
+// ── AUTH GUARD ──
 (async () => {
     const { data: { session } } = await _supabase.auth.getSession();
     if (!session) { window.location.href = '/'; return; }
@@ -516,6 +474,7 @@ let pendingAvatar = null;
     document.body.classList.add('ready');
 })();
 
+// ── AVATAR COLOR ──
 const PALETTE = ['#3b82f6','#8b5cf6','#ec4899','#f59e0b','#10b981','#06b6d4','#f97316','#6366f1','#14b8a6','#a855f7'];
 
 function seedColor(str) {
@@ -531,79 +490,44 @@ function getInitials(username, email) {
     return src.slice(0, 2).toUpperCase();
 }
 
-function applyAvatar(el, imgSrc, initials, color) {
-    if (imgSrc) {
-        if (el.tagName === 'IMG') {
-            el.src = imgSrc;
-        } else {
-            el.style.backgroundImage   = `url(${imgSrc})`;
-            el.style.backgroundSize    = 'cover';
-            el.style.backgroundPosition = 'center';
-            el.style.background        = '';
-            el.textContent             = '';
-        }
-        el.style.border = '1px solid rgba(255,255,255,.06)';
-    } else {
-        el.style.backgroundImage = '';
-        el.style.background      = color;
-        el.style.border          = '1px solid rgba(255,255,255,.06)';
-        el.textContent           = initials;
-        el.style.color           = '#fff';
-    }
+function applyAvatar(el, initials, color) {
+    el.textContent      = initials;
+    el.style.background = color;
+    el.style.color      = '#fff';
+    el.style.border     = '1px solid rgba(255,255,255,.06)';
 }
 
-function refreshAllAvatars() {
+function refreshAvatars() {
     const email    = currentUser.email || '';
     const username = (currentUser.user_metadata || {}).username || '';
     const initials = getInitials(username, email);
     const color    = seedColor(email);
-    const imgSrc   = pendingAvatar || localStorage.getItem('yav_pfp_' + currentUser.id) || '';
-
-    applyAvatar(document.getElementById('navAvatar'),      imgSrc, initials, color);
-    applyAvatar(document.getElementById('dropdownAvatar'), imgSrc, initials, color);
-    applyAvatar(document.getElementById('settingsAvatar'), imgSrc, initials, color);
+    applyAvatar(document.getElementById('navAvatar'),      initials, color);
+    applyAvatar(document.getElementById('dropdownAvatar'), initials, color);
 }
 
+// ── INIT ──
 function initUI() {
     const email    = currentUser.email || '';
     const username = (currentUser.user_metadata || {}).username || '';
     const display  = username || email.split('@')[0];
 
-    document.getElementById('navName').textContent      = display;
+    document.getElementById('navName').textContent       = display;
     document.getElementById('dropdownName').textContent  = display;
     document.getElementById('dropdownEmail').textContent = email;
     document.getElementById('emailDisplay').value        = email;
     document.getElementById('usernameInput').value       = username;
 
-    refreshAllAvatars();
+    refreshAvatars();
 }
 
-document.getElementById('avatarInput').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    if (file.size > 2 * 1024 * 1024) {
-        setMsg('Image must be under 2 MB.', 'err');
-        return;
-    }
-    const reader = new FileReader();
-    reader.onload = ev => {
-        pendingAvatar = ev.target.result;
-        refreshAllAvatars();
-    };
-    reader.readAsDataURL(file);
-});
-
+// ── SAVE ──
 async function saveProfile() {
     const btn      = document.getElementById('saveBtn');
     const username = document.getElementById('usernameInput').value.trim();
 
     btn.disabled    = true;
     btn.textContent = 'Saving…';
-
-    if (pendingAvatar) {
-        localStorage.setItem('yav_pfp_' + currentUser.id, pendingAvatar);
-        pendingAvatar = null;
-    }
 
     const { data, error } = await _supabase.auth.updateUser({ data: { username } });
 
@@ -615,9 +539,9 @@ async function saveProfile() {
     } else {
         currentUser = data.user;
         const display = username || currentUser.email.split('@')[0];
-        document.getElementById('navName').textContent     = display;
+        document.getElementById('navName').textContent      = display;
         document.getElementById('dropdownName').textContent = display;
-        refreshAllAvatars();
+        refreshAvatars();
         setMsg('Profile saved!', 'ok');
     }
 }
@@ -628,12 +552,14 @@ function setMsg(text, cls) {
     el.className   = 'save-msg ' + cls;
     setTimeout(() => { el.textContent = ''; el.className = 'save-msg'; }, 3500);
 }
-    
+
+// ── LOGOUT ──
 async function logout() {
     await _supabase.auth.signOut();
     window.location.href = '/';
 }
 
+// ── VIEW SWITCH ──
 function showView(name) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('view-' + name).classList.add('active');
@@ -642,6 +568,7 @@ function showView(name) {
     if (tab) tab.classList.add('active');
 }
 
+// ── DROPDOWN ──
 function toggleDropdown() {
     const drop = document.getElementById('profileDropdown');
     const btn  = document.getElementById('profileBtn');
