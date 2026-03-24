@@ -6,7 +6,8 @@ const ROUTES = {
   '/login': 'index.html',
   '/register': 'register.html',
   '/dash': 'dashboard.html',
-  '/docs': 'docs.html'
+  '/docs': 'docs.html',
+  '/reset-password': 'reset-password.html'
 };
 
 module.exports = (req, res) => {
