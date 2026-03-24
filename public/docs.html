@@ -211,8 +211,8 @@ body::-webkit-scrollbar-thumb{ background:#1e1e1e; border-radius:4px; }
         <div class="sidebar-label">Exploit API (.NET Framework)</div>
         <a class="sidebar-item" data-target="app-overview" href="#app-overview"><i class="fa-solid fa-desktop"></i> Overview</a>
         <a class="sidebar-item" data-target="execute" href="#execute"><i class="fa-solid fa-play"></i> Execute</a>
-        <a class="sidebar-item" data-target="attach" href="#attach"><i class="fa-solid fa-link"></i> Attach</a>
-        <a class="sidebar-item" data-target="autoattach" href="#autoattach"><i class="fa-solid fa-rotate"></i> SetAutoAttach</a>
+        <a class="sidebar-item" data-target="connect" href="#connect"><i class="fa-solid fa-link"></i> Attach</a>
+        <a class="sidebar-item" data-target="autoconnect" href="#autoconnect"><i class="fa-solid fa-rotate"></i> SetAutoAttach</a>
         <a class="sidebar-item" data-target="killroblox" href="#killroblox"><i class="fa-solid fa-skull"></i> KillRoblox</a>
     </div>
     <div class="sidebar-section">
@@ -387,9 +387,9 @@ body::-webkit-scrollbar-thumb{ background:#1e1e1e; border-radius:4px; }
 <span class="k">using</span> <span class="n">yavAPI</span><span class="p">;</span></div>
         <div class="code-label">All Functions</div>
         <div class="code-block"><span class="n">yavAPI</span><span class="p">.</span><span class="m">FUNC</span><span class="p">.</span><span class="t">Execute</span><span class="p">(</span><span class="k">string</span> <span class="n">script</span><span class="p">);</span>
-<span class="n">yavAPI</span><span class="p">.</span><span class="m">FUNC</span><span class="p">.</span><span class="t">Attach</span><span class="p">();</span>
-<span class="n">yavAPI</span><span class="p">.</span><span class="m">FUNC</span><span class="p">.</span><span class="t">SetAutoAttach</span><span class="p">(</span><span class="k">bool</span> <span class="n">enabled</span><span class="p">);</span>
-<span class="n">yavAPI</span><span class="p">.</span><span class="m">FUNC</span><span class="p">.</span><span class="t">KillRoblox</span><span class="p">();</span></div>
+<span class="n">yavAPI</span><span class="p">.</span><span class="m">Injector</span><span class="p">.</span><span class="t">Connect</span><span class="p">();</span>
+<span class="n">yavAPI</span><span class="p">.</span><span class="m">Injector</span><span class="p">.</span><span class="t">AutoConnect</span><span class="p">();</span>
+<span class="n">yavAPI</span><span class="p">.</span><span class="m">Injector</span><span class="p">.</span><span class="t">KillRoblox</span><span class="p">();</span></div>
     </section>
 
     <section class="section" id="execute">
@@ -419,25 +419,25 @@ body::-webkit-scrollbar-thumb{ background:#1e1e1e; border-radius:4px; }
 <span class="p">}</span></div>
     </section>
 
-    <section class="section" id="attach">
-        <h2 class="section-title"><i class="fa-solid fa-link"></i>Attach</h2>
-        <p class="section-desc">Attaches the executor to the running Roblox process. Must be called before <code>Execute()</code> unless <code>SetAutoAttach(true)</code> is active.</p>
+    <section class="section" id="connect">
+        <h2 class="section-title"><i class="fa-solid fa-link"></i>Connect</h2>
+        <p class="section-desc">Connects the executor with the running Roblox process. Must be called before <code>Execute()</code> unless <code>AutoConnect()</code> is run.</p>
         <div class="code-label">Signature</div>
-        <div class="code-block"><span class="n">yavAPI</span><span class="p">.</span><span class="m">FUNC</span><span class="p">.</span><span class="t">Attach</span><span class="p">();</span></div>
+        <div class="code-block"><span class="n">yavAPI</span><span class="p">.</span><span class="m">Injector</span><span class="p">.</span><span class="t">Connect</span><span class="p">();</span></div>
         <div class="code-label">WinForms / WPF Example</div>
         <div class="code-block"><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button>
-<span class="k">private void</span> <span class="m">btnAttach_Click</span><span class="p">(</span><span class="k">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="p">)</span>
+<span class="k">private void</span> <span class="m">btnConnect_Click</span><span class="p">(</span><span class="k">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">yavAPI</span><span class="p">.</span><span class="m">FUNC</span><span class="p">.</span><span class="t">Attach</span><span class="p">();</span>
+    <span class="n">yavAPI</span><span class="p">.</span><span class="m">Injector</span><span class="p">.</span><span class="t">Connect</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="k">private void</span> <span class="m">BtnAttach_Click</span><span class="p">(</span><span class="k">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="k">private void</span> <span class="m">BtnConnect_Click</span><span class="p">(</span><span class="k">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">yavAPI</span><span class="p">.</span><span class="m">FUNC</span><span class="p">.</span><span class="t">Attach</span><span class="p">();</span>
+    <span class="n">yavAPI</span><span class="p">.</span><span class="m">Injector</span><span class="p">.</span><span class="t">Connect</span><span class="p">();</span>
 <span class="p">}</span></div>
     </section>
 
-    <section class="section" id="autoattach">
+    <section class="section" id="autoconnect">
         <h2 class="section-title"><i class="fa-solid fa-rotate"></i>SetAutoAttach</h2>
         <p class="section-desc">Enables or disables automatic attachment when Roblox launches. When enabled, you do not need to call <code>Attach()</code> manually.</p>
         <div class="code-label">Signature</div>
