@@ -1,17 +1,13 @@
-const token = localStorage.getItem("token")
-
 async function Init() {
+    const token = localStorage.getItem("token")
     if (!token) return
-
     const Res = await fetch("/api/me", {
         headers: { Authorization: `Bearer ${token}` }
     })
-
     if (!Res.ok) {
         localStorage.removeItem("token")
         return
     }
-
     const { user } = await Res.json()
     SetLoggedIn(user)
 }
@@ -46,6 +42,7 @@ function SetLoggedIn(User) {
 }
 
 async function logout() {
+    const token = localStorage.getItem("token")
     await fetch("/api/logout", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` }
