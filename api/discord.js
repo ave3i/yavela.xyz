@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "discord",
         options: {
-        redirectTo: "https://www.yavela.xyz/api/callback",
+        redirectTo: "https://www.yavela.xyz/auth/callback",
         flowType: "pkce"
     }
         })
