@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap");
+
+body {
+    font-family: "Google Sans Flex", sans-serif;
+    background: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+small {
+    color: #858585;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 10px 14px;
+    }
+
+    .hero h2 {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .hero small {
+        text-align: center;
+    }
+
+    .button_container {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .button, .discord {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    font-family: inherit;
+    height: 100vh;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.hero {
+    padding: 0 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.hero h2 {
+    margin: 0;
+}
+
+.button_container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.trigger:hover {
+    background: #111;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.name {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.icon {
+    width: 12px;
+    height: 12px;
+}
+
+.profile_dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 200px;
+    gap: 8px;
+}
+
+.profile_dropdown.open {
+    display: flex;
+}
+
+.profile_dropdown {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile_dropdown img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.profile_dropdown span {
+    color: #fff;
+    font-size: 0.9rem;
+    display: block;
+}
+
+.profile_dropdown small {
+    font-size: 0.75rem;
+}
+
+.profile_dropdown hr {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 4px 0;
+}
+
+.profile_dropdown button {
+    background: none;
+    border: none;
+    color: #ff4444;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 4px 0;
+    text-align: left;
+    transition: color 0.2s;
+}
+
+.profile_dropdown button:hover {
+    color: #ff6666;
+}
+
+.button {
+    background-color: #050505;
+    font-family: inherit;
+    color:#fff;
+    font-size: medium;
+    font-weight: lighter;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    transition: background ease 0.6s;
+}
+
+.button svg {
+    width: 25px;
+    height: 25px;
+}
+
+.button:hover {
+    background-color: #090909;
+    cursor: pointer;
+}
+
+.button:disabled {
+    background-color: #030303;
+    color: #858585;
+    pointer-events: none;
+}
+
+.discord {
+    background-color: #4439d3;
+    font-family: inherit;
+    color:#fff;
+    font-size: medium;
+    font-weight: lighter;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    transition: background ease 0.6s;
+}
+
+.discord svg {
+    width: 25px;
+    height: 25px;
+}
+
+.discord:hover {
+    background-color: #2f279e;
+    cursor: pointer;
+}
+
+
