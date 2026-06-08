@@ -4,8 +4,11 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANO
 module.exports = async (req, res) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "discord",
-        options: { redirectTo: process.env.REDIRECT_URL }
-    })
+        options: {
+        redirectTo: "https://www.yavela.xyz",
+        flowType: "pkce"
+    }
+        })
     if (error) return res.status(500).json({ error: error.message })
     res.redirect(data.url)
 }

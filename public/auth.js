@@ -54,10 +54,10 @@ async function logout() {
     window.location.reload()
 }
 
-const params = new URLSearchParams(window.location.search)
-const session_token = params.get("token")
-if (session_token) {
-    localStorage.setItem("token", session_token)
+const hash = new URLSearchParams(window.location.hash.substring(1))
+const access_token = hash.get("access_token")
+if (access_token) {
+    localStorage.setItem("token", access_token)
     window.history.replaceState({}, "", "/")
 }
 
