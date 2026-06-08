@@ -3,7 +3,7 @@ const token = localStorage.getItem("token")
 async function Init() {
     if (!token) return
 
-    const Res = await fetch("/auth/me", {
+    const Res = await fetch("/api/me", {
         headers: { Authorization: `Bearer ${token}` }
     })
 
@@ -24,8 +24,8 @@ function SetLoggedIn(User) {
     document.getElementById("authorize").style.display = "none"
     document.getElementById("profile_menu").style.display = "flex"
 
-    document.getElementById("avatar").src = avatar
-    document.getElementById("name").textContent = username
+    document.getElementById("profile_avatar").src = avatar
+    document.getElementById("profile_name").textContent = username
     document.getElementById("dropdown_avatar").src = avatar
     document.getElementById("dropdown_name").textContent = username
     document.getElementById("dropdown_email").textContent = email
@@ -46,9 +46,9 @@ function SetLoggedIn(User) {
 }
 
 async function logout() {
-    await fetch("/auth/logout", {
+    await fetch("/api/logout", {
         method: "POST",
-        headers: { Authorization: `Bearer ${Token}` }
+        headers: { Authorization: `Bearer ${token}` }
     })
     localStorage.removeItem("token")
     window.location.reload()
